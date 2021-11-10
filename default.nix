@@ -28,6 +28,10 @@ in
     systemd.services.grocy-scanner = {
       enable = true;
       wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Restart = "always";
+        RestartSec = 3;
+      };
       script = ''
         ${cfg.package}/bin/barcode-reader ${cfg.device} | \
           while read barcode
