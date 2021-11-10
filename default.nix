@@ -15,6 +15,9 @@ in
       type = str;
       default = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
     };
+    apiKey = mkOption {
+      type =  str;
+    };
     host = mkOption {
       type =  str;
       default = "http://localhost";
@@ -26,19 +29,20 @@ in
       enable = true;
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${cfg.package}/bin/barcode-scanner ${cfg.device} | \
+        ${cfg.package}/bin/barcode-reader ${cfg.device} | \
           while read barcode
           do
-            echo "Yey I read '$barcode'"
             ${pkgs.curl}/bin/curl \
+              --request 'POST' \
+              "${cfg.host}/api/stock/products/by-barcode/$barcode/consume" \
+              --header 'accept: application/json' \
               --header "Content-Type: application/json" \
-              --request POST \
+              --header "GROCY-API-KEY: ${cfg.apiKey}" \
               --data '{
                 "amount": 1,
                 "transaction_type": "consume",
                 "spoiled": false
-              } \
-              ${cfg.host}/stock/products/by-barcode/${barcode}/consume
+              }'
           done
       '';
     };

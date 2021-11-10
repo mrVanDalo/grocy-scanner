@@ -1,6 +1,6 @@
 {
-  inputs.nixpkgs.url = "github:nixpkgs/nixos";
-  inputs.barcode-reader.url = "github:mrvandalo/barcode-reader";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs";
+  inputs.barcode-reader.url = "github:mrVanDalo/barcode-reader";
   outputs = { self, nixpkgs , barcode-reader }: {
     nixosModule = 
         ({ pkgs, ... }: {
@@ -11,7 +11,6 @@
               grocy-scanner = barcode-reader.packages.${pkgs.system};
             })
           ];
-        })
-
+        });
   };
 }
