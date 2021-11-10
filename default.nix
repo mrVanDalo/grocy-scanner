@@ -33,6 +33,8 @@ in
         RestartSec = 3;
       };
       script = ''
+        set -e
+        set -o pipefail
         ${cfg.package}/bin/barcode-reader ${cfg.device} | \
           while read barcode
           do
