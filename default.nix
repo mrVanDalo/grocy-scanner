@@ -14,7 +14,7 @@ in
     };
     device = mkOption {
       type = str;
-      default = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
+      example = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
       description = "device to read strings from which are the barcode";
     };
     apiKeyFile = mkOption {
