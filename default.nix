@@ -10,17 +10,21 @@ in
     package = mkOption {
       default = pkgs.grocy-scanner.barcode-reader;
       type = package;
+      description = "the binary use to read out the device";
     };
     device = mkOption {
       type = str;
       default = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
+      description = "device to read strings from which are the barcode";
     };
     apiKeyFile = mkOption {
-      type =  str;
+      type = str;
+      description = "file that contains your grocy api key";
     };
     host = mkOption {
-      type =  str;
+      type = str;
       default = "http://localhost";
+      description = "your grocy host";
     };
   };
 
@@ -28,9 +32,10 @@ in
     systemd.services.grocy-scanner = {
       enable = true;
       wantedBy = [ "multi-user.target" ];
+      unitConfig.ConditionPathExists = cfg.device;
       serviceConfig = {
         Restart = "always";
-        RestartSec = 3;
+        RestartSec = 0;
       };
       script = ''
         set -e
