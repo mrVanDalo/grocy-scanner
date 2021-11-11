@@ -15,7 +15,7 @@ in
       type = str;
       default = "/dev/input/by-id/usb-Belon.cn_2.4G_Wireless_Device_Belon_Smart-event-kbd";
     };
-    apiKey = mkOption {
+    apiKeyFile = mkOption {
       type =  str;
     };
     host = mkOption {
@@ -43,7 +43,7 @@ in
               "${cfg.host}/api/stock/products/by-barcode/$barcode/consume" \
               --header 'accept: application/json' \
               --header "Content-Type: application/json" \
-              --header "GROCY-API-KEY: ${cfg.apiKey}" \
+              --header "GROCY-API-KEY: $(cat ${cfg.apiKeyFile})" \
               --data '{
                 "amount": 1,
                 "transaction_type": "consume",
