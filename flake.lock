@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1636518626,
-        "narHash": "sha256-7qIwQrY+jehhAcT0Zob+rbTqkH/WniVJeP1n+tmONsI=",
+        "lastModified": 1636602745,
+        "narHash": "sha256-oCpDOT83cQwIz1frgZwhl+g5uzQIOvHfYglbqF7OZ5g=",
         "owner": "mrVanDalo",
         "repo": "barcode-reader",
-        "rev": "02c896104ba594e4a905896b582f1f4e8c25f4fd",
+        "rev": "7ffb09892cd67186b2cb33f001bfe27e1acd6e5d",
         "type": "github"
       },
       "original": {
