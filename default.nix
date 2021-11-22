@@ -49,6 +49,8 @@ in
               --header 'accept: application/json' \
               --header "Content-Type: application/json" \
               --header "GROCY-API-KEY: $(cat ${cfg.apiKeyFile})" \
+              --silent \
+              --show-error \
               --data '{
                 "amount": 1,
                 "transaction_type": "consume",
